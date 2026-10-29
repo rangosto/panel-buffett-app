@@ -253,8 +253,17 @@ const SECCIONES = ["mercado", "cartera", "oportunidades", "superinversores", "ap
 let pasos = 0; // pantallas visitadas dentro de la app (para saber si «Volver» puede ir atrás)
 let turno = 0; // cada navegación tiene su turno: si llega otra antes de terminar, la vieja no pinta encima
 
+// la clave llega con el QR del panel del PC (…/#clave=github_pat_…): se la queda Ajustes y se borra de la dirección
+function recibirClave() {
+  const qr = /^#clave=([A-Za-z0-9_]+)$/.exec(location.hash);
+  if (!qr) return;
+  history.replaceState(null, "", location.pathname + location.search + "#/ajustes");
+  Aj.recibir(qr[1]);
+}
+
 export async function navegar() {
   const mio = ++turno;
+  recibirClave(); // con la app ya abierta, escanear el QR solo cambia la parte de detrás de «#»
   const [camino, consulta = ""] = location.hash.replace(/^#\/?/, "").split("?");
   const [nombre, ...resto] = camino.split("/");
   const ruta = RUTAS[nombre] ? nombre : "mercado";
@@ -306,6 +315,7 @@ async function arrancar() {
   $("#actualizar").addEventListener("click", actualizar);
   document.addEventListener("keydown", (e) => e.key === "Escape" && !$("#hoja").hidden && cerrarHoja());
 
+  recibirClave();
   const a = await gh.ajustes();
   if (!a.token && !location.hash.startsWith("#/ajustes")) location.hash = "#/ajustes";
   pasos = 1;

@@ -5,6 +5,11 @@ import { avisar, confirmar, ir } from "./app.js";
 
 const ENLACE_CLAVE = "https://github.com/settings/personal-access-tokens/new";
 
+let recibida = null; // clave que llegó escaneando el QR del panel del PC: se prueba al abrir Ajustes
+export function recibir(clave) {
+  recibida = clave;
+}
+
 export async function pantalla(cont) {
   const a = await gh.ajustes();
   const arbol = await (await import("./almacen.js")).leer("ajustes", "arbol");
@@ -17,6 +22,8 @@ export async function pantalla(cont) {
     <h2 class="bp-h"><span class="t">🔑 Tu clave de GitHub</span></h2>
     ${a.token ? `<div class="seccion-aviso">✅ Clave guardada en este móvil${arbol ? ` · datos descargados ${escapar(hace(arbol.fecha))}` : ""}.</div>` : `<div class="seccion-aviso">👋 Para empezar, la app necesita una clave de tu cuenta de GitHub. Con ella lee tus datos y pide que se actualicen. Se crea una vez y solo sirve para tu repositorio «panel-buffett».</div>`}
     <details class="bl-exp" ${a.token ? "" : "open"}><summary>Cómo crear la clave (5 minutos)</summary><div>
+      <div class="seccion-aviso">💻 <b>Más fácil desde el PC</b> (y sin códigos de verificación en el móvil): en el panel del PC abre <b>📱 Conectar el móvil</b>, crea allí la clave y pásala al móvil escaneando el código QR con la cámara.</div>
+      <p class="bl-nota">O, si prefieres hacerlo todo en el móvil:</p>
       <ol class="pasos">
         <li>Abre <a href="${ENLACE_CLAVE}" target="_blank" rel="noopener">esta página de GitHub</a> (entra con tu cuenta <b>rangosto</b> si te lo pide).
           <br><small>¿Te sale «404» o se abre la app de GitHub? Esa app no tiene esta página. Mantén pulsado el texto de abajo, cópialo y pégalo en la barra de direcciones de <b>Chrome</b>:</small>
@@ -51,9 +58,7 @@ export async function pantalla(cont) {
     </div></details>`;
 
   const estadoClave = cont.querySelector("#estado-clave");
-  cont.querySelector("#f-clave").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const token = cont.querySelector("#token").value.trim();
+  async function probar(token) {
     if (!/^(github_pat_|ghp_|gho_)[A-Za-z0-9_]{20,}$/.test(token)) {
       estadoClave.textContent = "Eso no parece una clave de GitHub: debe empezar por «github_pat_». Cópiala entera.";
       return;
@@ -72,7 +77,16 @@ export async function pantalla(cont) {
       await gh.guardarAjustes({ token: anterior });
       estadoClave.textContent = `❌ ${err.message}`;
     }
+  }
+  cont.querySelector("#f-clave").addEventListener("submit", (e) => {
+    e.preventDefault();
+    probar(cont.querySelector("#token").value.trim());
   });
+  if (recibida) {
+    const token = recibida;
+    recibida = null;
+    probar(token);
+  }
 
   cont.querySelector("#todas")?.addEventListener("click", async (e) => {
     e.target.disabled = true;
