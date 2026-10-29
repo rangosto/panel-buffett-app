@@ -1,0 +1,17 @@
+{
+  "name": "Panel Buffett",
+  "short_name": "Buffett",
+  "description": "Tu panel de bolsa al estilo Buffett: cartera, termómetro del mercado, oportunidades y superinversores.",
+  "lang": "es",
+  "start_url": "./#/mercado",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f9f9f7",
+  "theme_color": "#2a78d6",
+  "icons": [
+    { "src": "iconos/icono-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "iconos/icono-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "iconos/icono-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

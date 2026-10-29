@@ -1,0 +1,3 @@
+/* Generado por movil/construir.py desde core/ui/tema.py: no editar a mano. */
+:root{--surface:#fcfcfb;--page:#f9f9f7;--ink:#0b0b0b;--ink2:#52514e;--muted:#898781;--grid:#e1e0d9;--axis:#c3c2b7;--border:rgba(11,11,11,0.10);--accent:#2a78d6;--tip-bg:#ffffff;--tip-ink:#0b0b0b;--tip-muted:#52514e;--tip-alt:#f0efec;--mid:#f0efec;--sube:#006300;}
+@media (prefers-color-scheme: dark) { :root{--surface:#1a1a19;--page:#0d0d0d;--ink:#f0efec;--ink2:#c3c2b7;--muted:#898781;--grid:#2c2c2a;--axis:#383835;--border:rgba(255,255,255,0.10);--accent:#3987e5;--tip-bg:#262624;--tip-ink:#f0efec;--tip-muted:#c3c2b7;--tip-alt:#2c2c2a;--mid:#383835;--sube:#0ca30c;} }
