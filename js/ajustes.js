@@ -18,7 +18,9 @@ export async function pantalla(cont) {
     ${a.token ? `<div class="seccion-aviso">✅ Clave guardada en este móvil${arbol ? ` · datos descargados ${escapar(hace(arbol.fecha))}` : ""}.</div>` : `<div class="seccion-aviso">👋 Para empezar, la app necesita una clave de tu cuenta de GitHub. Con ella lee tus datos y pide que se actualicen. Se crea una vez y solo sirve para tu repositorio «panel-buffett».</div>`}
     <details class="bl-exp" ${a.token ? "" : "open"}><summary>Cómo crear la clave (5 minutos)</summary><div>
       <ol class="pasos">
-        <li>Abre <a href="${ENLACE_CLAVE}" target="_blank" rel="noopener">esta página de GitHub</a> (entra con tu cuenta <b>rangosto</b> si te lo pide).</li>
+        <li>Abre <a href="${ENLACE_CLAVE}" target="_blank" rel="noopener">esta página de GitHub</a> (entra con tu cuenta <b>rangosto</b> si te lo pide).
+          <br><small>¿Te sale «404» o se abre la app de GitHub? Esa app no tiene esta página. Mantén pulsado el texto de abajo, cópialo y pégalo en la barra de direcciones de <b>Chrome</b>:</small>
+          <br><span class="codigo" style="user-select:all;word-break:break-all">${ENLACE_CLAVE}</span></li>
         <li><b>Token name</b>: escribe <span class="codigo">Panel Buffett móvil</span>. <b>Expiration</b>: elige <span class="codigo">Custom</span> y una fecha dentro de un año (cuando caduque, la app te avisará para crear otra).</li>
         <li><b>Repository access</b>: elige <span class="codigo">Only select repositories</span> y marca <span class="codigo">panel-buffett</span>.</li>
         <li><b>Permissions</b> → <b>Repository permissions</b> (o el botón <b>Add permissions</b>): pon <span class="codigo">Actions</span> en <b>Read and write</b> y <span class="codigo">Contents</span> en <b>Read-only</b>. Nada más (Metadata se pone sola).</li>

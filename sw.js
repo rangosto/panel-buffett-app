@@ -1,6 +1,6 @@
 // Guarda las pantallas de la app para que abra sin conexión. Los datos van aparte (IndexedDB, js/almacen.js).
 // VERSION la cambia movil/construir.py en cada publicación: así el móvil recoge la versión nueva.
-const VERSION = "20261029-0930";
+const VERSION = "20261029-1010";
 const CACHE = `panel-buffett-${VERSION}`;
 const FICHEROS = [
   "./", "index.html", "app.css", "tema.css", "vars.css", "plotly.min.js", "manifest.webmanifest",
