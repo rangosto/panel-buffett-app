@@ -19,9 +19,9 @@ export async function pantalla(cont) {
     <details class="bl-exp" ${a.token ? "" : "open"}><summary>Cómo crear la clave (5 minutos)</summary><div>
       <ol class="pasos">
         <li>Abre <a href="${ENLACE_CLAVE}" target="_blank" rel="noopener">esta página de GitHub</a> (entra con tu cuenta <b>rangosto</b> si te lo pide).</li>
-        <li><b>Token name</b>: escribe <span class="codigo">Panel Buffett móvil</span>. <b>Expiration</b>: <span class="codigo">1 year</span> (cuando caduque, la app te avisará para crear otra).</li>
+        <li><b>Token name</b>: escribe <span class="codigo">Panel Buffett móvil</span>. <b>Expiration</b>: elige <span class="codigo">Custom</span> y una fecha dentro de un año (cuando caduque, la app te avisará para crear otra).</li>
         <li><b>Repository access</b>: elige <span class="codigo">Only select repositories</span> y marca <span class="codigo">panel-buffett</span>.</li>
-        <li><b>Permissions</b> → <b>Repository permissions</b>: pon <span class="codigo">Actions</span> en <b>Read and write</b> y <span class="codigo">Contents</span> en <b>Read-only</b>. Nada más (Metadata se pone sola).</li>
+        <li><b>Permissions</b> → <b>Repository permissions</b> (o el botón <b>Add permissions</b>): pon <span class="codigo">Actions</span> en <b>Read and write</b> y <span class="codigo">Contents</span> en <b>Read-only</b>. Nada más (Metadata se pone sola).</li>
         <li>Pulsa <b>Generate token</b>, copia la clave (empieza por <span class="codigo">github_pat_</span>) y pégala aquí abajo.</li>
       </ol>
       <p class="bl-nota">Con esos permisos la app puede leer tus datos y lanzar las actualizaciones, pero no puede cambiar el código ni nada más de tu cuenta. Si pierdes el móvil, bórrala en GitHub (Settings → Developer settings → Personal access tokens).</p>
